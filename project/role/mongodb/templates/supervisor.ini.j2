@@ -1,0 +1,5 @@
+[program:mongodb]
+command=bash -c "mongod -f {{mongodb.config_dir}}/mongod.conf"
+process_name=%(program_name)s
+stdout_logfile={{mongodb.log_dir}}/stdout.log
+stderr_logfile={{mongodb.log_dir}}/stderr.log

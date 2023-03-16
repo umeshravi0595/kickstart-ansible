@@ -1,0 +1,3 @@
+- hosts: project2
+  roles:
+  - { role: /opt/kickstart-ansible/project/role/mongodb }

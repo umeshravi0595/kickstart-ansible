@@ -1,0 +1,8 @@
+# supervisor command to stop mongodb
+- name: supervisor command to stop mongodb
+  command: supervisorctl {{item}} mongodb
+  loop:
+    - stop
+    - remove
+  tags:
+    - stop

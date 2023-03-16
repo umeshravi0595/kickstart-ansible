@@ -1,0 +1,25 @@
+# Configure Supervisor for Node.js App.
+- name: Configure mongodb
+  template:
+     src: mongodb.conf.j2
+     dest: "{{mongodb.config_dir}}/mongod.conf"
+     owner: root
+     group: root
+     mode: 0600
+  tags:
+    - configure
+
+
+- name: Configure supervisor for mongodb
+  template:
+     src: supervisor.ini.j2
+     dest: /etc/supervisord.d/mongodb.ini
+     owner: root
+     group: root
+     mode: 0600
+  tags:
+    - configure
+
+
+
+

@@ -1,0 +1,10 @@
+# supervisor command to start mongodb
+- name: supervisor command to start mongodb
+  command: supervisorctl {{item}} mongodb
+  loop:
+    - update
+    - start
+  tags:
+    - start
+
+

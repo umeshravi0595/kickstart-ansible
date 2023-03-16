@@ -1,0 +1,54 @@
+- name: Install a list of packages
+  yum:
+    name:
+      - wget 
+      - tar 
+      - gzip 
+      - vim 
+      - procps
+      - libcurl 
+      - openssl 
+      - xz-libs
+    state: present
+    tags:
+      - setup
+
+
+- name: create mongodb directories
+  file:
+    path: "{{item}}"
+    state: directory
+    owner: root
+    group: root
+    recurse: true
+    mode: 0700
+  loop:
+    - "{{mongodb.config_dir}}"
+    - "{{mongodb.data_dir}}"
+    - "{{mongodb.log_dir}}"
+  tags:
+    - setup  
+  
+
+
+
+- name: Download and extract mongodb
+  unarchive:
+    src: https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon2-{{mongodb.version}}.tgz
+    dest: /tmp
+    owner: root
+    group: root
+    mode: 0700 
+    remote_src: yes
+  tags:
+    - setup
+
+
+- name: Remove file (delete file)
+  file:
+     path: /tmp/mongodb-linux-x86_64-amazon2-{{mongodb.version}}
+     state: absent  
+  tags:
+    - setup 
+
+

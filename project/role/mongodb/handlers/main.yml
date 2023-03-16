@@ -1,0 +1,5 @@
+# Restart Mongodb.
+- name: Restart mongodb
+  command: supervisorctl restart mongodb
+  tags:
+    - restart
